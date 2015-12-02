@@ -17,11 +17,10 @@ var f=function(){
 }
 
 waitfor.pre(f,{
-  time:2000,
-  timeout:10000
+  time:1000,
+  timeout:3000
 }).then(function(answer){
   console.log(answer)
 }).catch(function(err){
   console.log(err)
-
 })

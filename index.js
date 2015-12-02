@@ -16,7 +16,8 @@ module.exports = {
       merge(options,conf)
     }
     var timeout=new Date().getTime()+options.timeout;
-    var deferred = q.defer();
+    var prom=q;
+    var deferred = prom.defer();
 
     function retry(f,time,timeout){
       setTimeout(function(){
@@ -28,7 +29,7 @@ module.exports = {
             retry(f,time,timeout)
           } else{
             verb(err,'warn','waitfor-promise timeout')
-            deferred.reject(data)
+            deferred.reject('timeout')
           }
         })
       },time)
@@ -48,7 +49,8 @@ module.exports = {
       merge(options,conf)
     }
     var timeout=new Date().getTime()+options.timeout;
-    var deferred = q.defer();
+    var prom=q;
+    var deferred = prom.defer();
 
     function retry(f,time,timeout){
       setTimeout(function(){
@@ -60,7 +62,7 @@ module.exports = {
             retry(f,time,timeout)
           } else{
             verb(err,'warn','waitfor-promise timeout')
-            deferred.reject(data)
+            deferred.reject('timeout')
           }
         })
       },time)
