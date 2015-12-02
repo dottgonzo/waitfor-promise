@@ -5,7 +5,8 @@ verb=require('verbo');
 
 var options={
   time:5000,
-  timeout:120000
+  timeout:120000,
+  verbose:true
 }
 
 
@@ -25,10 +26,16 @@ module.exports = {
           deferred.resolve(data)
         }).catch(function(err){
           if(new Date().getTime()<timeout){
-            verb(err,'warn','waitfor-promise is retryng')
+            if(options.verbose){
+              verb(err,'warn','waitfor-promise retryng')
+            }
+
             retry(f,time,timeout)
           } else{
-            verb(err,'warn','waitfor-promise timeout')
+            if(options.verbose){
+              verb(err,'warn','waitfor-promise timeout')
+            }
+
             deferred.reject('timeout')
           }
         })
@@ -38,7 +45,10 @@ module.exports = {
     fun().then(function(data){
       deferred.resolve(data)
     }).catch(function(err){
-      verb(err,'warn','waitfor-promise is retryng')
+      if(options.verbose){
+        verb(err,'warn','waitfor-promise retryng')
+      }
+
       retry(fun,options.time,timeout)
     })
 
@@ -58,10 +68,17 @@ module.exports = {
           deferred.resolve(data)
         }).catch(function(err){
           if(new Date().getTime()<timeout){
-            verb(err,'warn','waitfor-promise is retryng')
+            if(options.verbose){
+              verb(err,'warn','waitfor-promise retryng')
+            }
             retry(f,time,timeout)
           } else{
-            verb(err,'warn','waitfor-promise timeout')
+
+            if(options.verbose){
+              verb(err,'warn','waitfor-promise timeout')
+            }
+
+
             deferred.reject('timeout')
           }
         })

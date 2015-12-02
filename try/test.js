@@ -18,9 +18,10 @@ var f=function(){
 
 waitfor.pre(f,{
   time:1000,
-  timeout:3000
+  timeout:3000,
+  verbose:false
 }).then(function(answer){
   console.log(answer)
 }).catch(function(err){
-  console.log(err)
+  console.log('timeout? '+err)
 })
