@@ -1,5 +1,5 @@
 var waitfor=require('../index'),
-Promise=require('promise');
+Promise=require('bluebird');
 
 
 var f=function(){
